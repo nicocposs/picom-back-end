@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import project.picom.validators.ContactNumberConstraint;
 
 
 @Entity
@@ -27,7 +28,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
 public class Client extends Utilisateur {
-	@Pattern(regexp = "/^(+33\\s[1-9]{8})|(0[1-9]\\s{8})$/")
+	@ContactNumberConstraint
 	private String numeroDeTelephone;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
 	private List<Annonce> annonces;
