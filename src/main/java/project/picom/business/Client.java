@@ -9,17 +9,22 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.Length;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
 public class Client extends Utilisateur {
 	@Pattern(regexp = "/^(+33\\s[1-9]{8})|(0[1-9]\\s{8})$/")
