@@ -2,6 +2,7 @@ package project.picom.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,13 @@ public class AnnonceRestController {
     private final AnnonceService annonceService;
 
     @GetMapping("/annonce/{id}")
-    public List<Annonce> getAnnonceByClient(@PathVariable Long id){
-        return annonceService.getAnnonceByClient(id);
+    public ResponseEntity<List<Annonce>> getAnnonceByClient(@PathVariable Long id){
+        List<Annonce> annonces = annonceService.getAnnonceByClient(id);
+
+        if(annonces.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(annonces);
     }
 }
