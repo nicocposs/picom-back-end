@@ -53,6 +53,12 @@ public class UtilisateurServiceImpl implements UtilisateurService{
             return null;
         }
     }
+
+//    @Override
+//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        // TODO Auto-generated method stub
+//        return null;
+//    }
     
     
 

@@ -1,8 +1,6 @@
 package project.picom.business;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 import lombok.NoArgsConstructor;
 
@@ -10,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Administrateur extends Utilisateur {
 	
 	public Administrateur(String nom, String prenom, String email, String motDePasse){
