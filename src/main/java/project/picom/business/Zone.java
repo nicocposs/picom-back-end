@@ -32,4 +32,7 @@ public class Zone {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Annonce> annonces;
 
+	public Zone(String nom){
+		this.nom = nom;
+	}
 }

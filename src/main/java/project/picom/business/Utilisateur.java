@@ -9,21 +9,23 @@ import javax.validation.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public abstract class Utilisateur {
 	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private String nom;
-	private String prenom;
+	protected String nom;
+	protected String prenom;
 	@Email
-	private String email;
+	protected String email;
 	@Length(min = 8)
-	private String motDePasse;
+	protected String motDePasse;
 }

@@ -30,4 +30,7 @@ public class TrancheHoraire {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Annonce> annonces;
 
+	public TrancheHoraire(int debut) {
+		this.debut = debut;
+	}
 }
