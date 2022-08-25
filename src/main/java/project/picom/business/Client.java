@@ -24,6 +24,8 @@ import project.picom.validators.ContactNumberConstraint;
 @Setter
 @ToString
 @EqualsAndHashCode(callSuper=false)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Client extends Utilisateur {
 	@ContactNumberConstraint
 	private String numeroDeTelephone;

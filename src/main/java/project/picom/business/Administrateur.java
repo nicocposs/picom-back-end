@@ -4,9 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import lombok.NoArgsConstructor;
+
 
 
 @Entity
+@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Administrateur extends Utilisateur {
 	

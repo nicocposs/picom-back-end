@@ -16,6 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+
 public abstract class Utilisateur {
 	
 	

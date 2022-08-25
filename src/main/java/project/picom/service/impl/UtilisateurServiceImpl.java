@@ -1,13 +1,16 @@
 package project.picom.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import project.picom.business.Administrateur;
 import project.picom.business.Client;
+import project.picom.business.Utilisateur;
 import project.picom.dao.AdministrateurDao;
 import project.picom.dao.ClientDao;
-//import project.picom.dao.UtilisateurDao;
+import project.picom.dao.UtilisateurDao;
 import project.picom.service.UtilisateurService;
 
 @Service
@@ -15,7 +18,7 @@ import project.picom.service.UtilisateurService;
 public class UtilisateurServiceImpl implements UtilisateurService{
 
     private final AdministrateurDao administrateurDao;
-    //private final UtilisateurDao utilisateurDao;
+    private final UtilisateurDao utilisateurDao;
     private final ClientDao clientDao;
 
     @Override
@@ -28,5 +31,12 @@ public class UtilisateurServiceImpl implements UtilisateurService{
         administrateurDao.save(a);
         
     }
+
+    @Override
+    public List<Utilisateur> getUtilisateurs() {
+        return utilisateurDao.findAll();
+    }
+    
+
     
 }
