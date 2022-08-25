@@ -7,7 +7,7 @@ import project.picom.business.Administrateur;
 import project.picom.business.Client;
 import project.picom.dao.AdministrateurDao;
 import project.picom.dao.ClientDao;
-import project.picom.dao.UtilisateurDao;
+//import project.picom.dao.UtilisateurDao;
 import project.picom.service.UtilisateurService;
 
 @Service
@@ -15,7 +15,7 @@ import project.picom.service.UtilisateurService;
 public class UtilisateurServiceImpl implements UtilisateurService{
 
     private final AdministrateurDao administrateurDao;
-    private final UtilisateurDao utilisateurDao;
+    //private final UtilisateurDao utilisateurDao;
     private final ClientDao clientDao;
 
     @Override
