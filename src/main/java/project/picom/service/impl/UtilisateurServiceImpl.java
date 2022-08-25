@@ -1,6 +1,7 @@
 package project.picom.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,23 @@ public class UtilisateurServiceImpl implements UtilisateurService{
     public List<Utilisateur> getUtilisateurs() {
         return utilisateurDao.findAll();
     }
+
+    @Override
+    public Utilisateur getUtilisateur(String email, String motDePasse) {
+        return utilisateurDao.findByEmailAndMotDePasse(email,motDePasse);
+    }
+
+    @Override
+    public Client getClient(int i) {
+        Long id = Long.valueOf(i);
+        Optional<Client> c = clientDao.findById(id);
+        if(c.isPresent()){
+            return c.get();
+        }else{
+            return null;
+        }
+    }
+    
     
 
     

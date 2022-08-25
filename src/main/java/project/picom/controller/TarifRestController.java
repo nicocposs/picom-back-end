@@ -10,7 +10,7 @@ import project.picom.service.TarifService;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/tarif")
+@RequestMapping("/api")
 @Validated
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 public class TarifRestController {

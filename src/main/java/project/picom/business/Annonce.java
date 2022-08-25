@@ -18,6 +18,8 @@ import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,9 +50,15 @@ public class Annonce {
 	private double montantRegleEnEuros;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Client client;
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "annonces")
 	private List<Zone> zones;
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "annonces")
 	private List<TrancheHoraire> trancheHoraires;
+
+	public Annonce(String contenu, byte moisExpiration){
+		this.contenu = contenu;
+		this.moisExpiration = moisExpiration;
+	}
 }

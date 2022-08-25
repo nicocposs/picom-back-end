@@ -13,5 +13,9 @@ public interface UtilisateurService {
     void addAdministrateur(Administrateur a);
 
     List<Utilisateur> getUtilisateurs();
+
+    Utilisateur getUtilisateur(String email, String motDePasse);
+
+    Client getClient(int i);
     
 }

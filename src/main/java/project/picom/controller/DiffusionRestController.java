@@ -10,7 +10,7 @@ import project.picom.service.DiffusionService;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/diffusion")
+@RequestMapping("/api")
 @Validated
 @CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 public class DiffusionRestController {

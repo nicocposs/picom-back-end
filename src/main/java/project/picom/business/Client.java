@@ -39,10 +39,4 @@ public class Client extends Utilisateur {
 		this.motDePasse	= motDePasse;
 		this.numeroDeTelephone = numeroDeTelephone;
 	}
-
-	public boolean ajouterAnnonce() {
-		//TODO Ajouter la méthode
-		return true;
-	}
-
 }

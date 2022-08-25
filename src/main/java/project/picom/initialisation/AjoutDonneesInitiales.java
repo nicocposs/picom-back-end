@@ -5,10 +5,12 @@ import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
 import project.picom.business.Administrateur;
+import project.picom.business.Annonce;
 import project.picom.business.Arret;
 import project.picom.business.Client;
 import project.picom.business.TrancheHoraire;
 import project.picom.business.Zone;
+import project.picom.service.AnnonceService;
 import project.picom.service.ArretService;
 import project.picom.service.TrancheHoraireService;
 import project.picom.service.UtilisateurService;
@@ -22,6 +24,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
     private final ArretService arretService;
     private final TrancheHoraireService trancheHoraireService;
     private final UtilisateurService utilisateurService;
+    private final AnnonceService annonceService;
 
 
     @Override
@@ -31,6 +34,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
         ajoutTranchesHoraires();
         ajoutClient();
         ajoutAdmin();
+        ajoutAnnonces();
     }
 
     public void ajoutZones(){
@@ -67,6 +71,16 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
     public void ajoutAdmin(){
         Administrateur a = new Administrateur("Admin","TropBien","admin1@orsys.fr","12345678");
         utilisateurService.addAdministrateur(a);
+    }
+
+    public void ajoutAnnonces(){
+        Annonce a1 = new Annonce("Annonce 1",(byte)1);
+        Client c = utilisateurService.getClient(1);
+        a1.setClient(c);
+        Annonce a2 = new Annonce("Annonce 2",(byte)1);
+        a2.setClient(c);
+        annonceService.addAnnonce(a1);
+        annonceService.addAnnonce(a2);
     }
     
 }

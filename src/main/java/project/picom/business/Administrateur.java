@@ -20,9 +20,4 @@ public class Administrateur extends Utilisateur {
 		this.motDePasse	= motDePasse;
 	}
 
-	public boolean ajouterTarif() {
-		//TODO Ajouter la méthode
-		return true;
-	};
-
 }
