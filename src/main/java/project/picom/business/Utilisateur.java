@@ -8,15 +8,13 @@ import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.Length;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@AllArgsConstructor
-@Data
-@NoArgsConstructor
-public class Utilisateur {
+@Getter
+@Setter
+public abstract class Utilisateur {
 	
 	
 	@Id
