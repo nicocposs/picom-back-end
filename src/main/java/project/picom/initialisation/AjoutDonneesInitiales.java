@@ -1,6 +1,7 @@
 package project.picom.initialisation;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
     private final TrancheHoraireService trancheHoraireService;
     private final UtilisateurService utilisateurService;
     private final AnnonceService annonceService;
-
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -64,12 +65,14 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
     }
 
     public void ajoutClient(){
-        Client c = new Client("Client","TropBien","client1@orsys.fr","12345678","0600000000");
+        String pass = passwordEncoder.encode("12345678");
+        Client c = new Client("Client","TropBien","client1@orsys.fr",pass,"0600000000");
         utilisateurService.addClient(c);
     }
 
     public void ajoutAdmin(){
-        Administrateur a = new Administrateur("Admin","TropBien","admin1@orsys.fr","12345678");
+        String pass = passwordEncoder.encode("12345678");
+        Administrateur a = new Administrateur("Admin","TropBien","admin1@orsys.fr",pass);
         utilisateurService.addAdministrateur(a);
     }
 
