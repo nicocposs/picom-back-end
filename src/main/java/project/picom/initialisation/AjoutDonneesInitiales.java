@@ -26,7 +26,6 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
     private final TrancheHoraireService trancheHoraireService;
     private final UtilisateurService utilisateurService;
     private final AnnonceService annonceService;
-    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -65,14 +64,12 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
     }
 
     public void ajoutClient(){
-        String pass = passwordEncoder.encode("12345678");
-        Client c = new Client("Client","TropBien","client1@orsys.fr",pass,"0600000000");
+        Client c = new Client("Client","TropBien","client1@orsys.fr","12345678","0600000000");
         utilisateurService.addClient(c);
     }
 
     public void ajoutAdmin(){
-        String pass = passwordEncoder.encode("12345678");
-        Administrateur a = new Administrateur("Admin","TropBien","admin1@orsys.fr",pass);
+        Administrateur a = new Administrateur("Admin","TropBien","admin1@orsys.fr","12345678");
         utilisateurService.addAdministrateur(a);
     }
 
