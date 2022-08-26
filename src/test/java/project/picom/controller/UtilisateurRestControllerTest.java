@@ -7,12 +7,15 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,6 +50,76 @@ public class UtilisateurRestControllerTest {
 				.andExpect(MockMvcResultMatchers.jsonPath("$.motDePasse").value(motDePasse)).andExpect(status().isOk())
 				.andDo(MockMvcResultHandlers.print());
 	}
+
+
+	@Test
+	@Order(2)
+	@GetMapping("utilisateurs/{email}/{motDePasse}")
+	void testUtilisateurGetByMailMdpFalse() throws Exception {
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
+				.get("/api/utilisateurs/false/samarshpa" );
+
+		mockMvc.perform(requestBuilder).andExpect(status().isBadRequest())
+				.andDo(MockMvcResultHandlers.print());
+	}
+
+	@Test
+	@Order(3)
+	@GetMapping("utilisateurs")
+	void testGetall() throws Exception {
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
+				.get("/api/utilisateurs/");
+
+		mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.jsonPath("$[0].email").value(email))
+				.andExpect(MockMvcResultMatchers.jsonPath("$[0].motDePasse").value(motDePasse)).andExpect(status().isOk())
+				.andDo(MockMvcResultHandlers.print());
+	}
+
+	@Test
+	@Order(4)
+	@PostMapping("utilisateurs/")
+	void testPostUtilisateur() throws Exception {
+		c.setPrenom("Bob");
+		c.setNom("Bob");
+		c.setMotDePasse("12345678");
+		c.setEmail("Bobob@orsys.fr");
+		c.setNumeroDeTelephone("0607070707");
+
+		clientJSON = objectMapper.writeValueAsString(c);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/utilisateurs").content(clientJSON)
+		.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.prenom").value(c.getPrenom()))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.nom").value(c.getNom()))
+	    .andExpect(MockMvcResultMatchers.jsonPath("$.motDePasse").value(c.getMotDePasse()))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.email").value(c.getEmail()))
+	    .andExpect(MockMvcResultMatchers.jsonPath("$.numeroDeTelephone").value(c.getNumeroDeTelephone()))
+		// on vérifie que le code retour est bien 201
+		.andExpect(status().isCreated())
+		// on affiche dans la console l'intégralité de la requête et de la réponse
+		.andDo(MockMvcResultHandlers.print());
+	}
+
+	@Test
+	@Order(5)
+	@PostMapping("utilisateurs/")
+	void testPostUtilisateurFalse() throws Exception {
+		c.setPrenom("Bob");
+		c.setNom("Bob");
+		c.setMotDePasse("123");
+		c.setEmail("Bobob@orsys.fr");
+		c.setNumeroDeTelephone("0607070707");
+
+		clientJSON = objectMapper.writeValueAsString(c);
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/utilisateurs").content(clientJSON)
+		.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+		// on vérifie que le code retour est bien 400
+		.andExpect(status().isBadRequest())
+		// on affiche dans la console l'intégralité de la requête et de la réponse
+		.andDo(MockMvcResultHandlers.print());
+	}
+
 }
 
 

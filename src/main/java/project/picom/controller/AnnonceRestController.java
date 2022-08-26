@@ -26,7 +26,7 @@ public class AnnonceRestController {
     
     private final AnnonceService annonceService;
 
-    @GetMapping("/annonce/{id}")
+    @GetMapping("/annonces/{id}")
     public ResponseEntity<List<Annonce>> getAnnonceByClient(@PathVariable Long id){
         List<Annonce> annonces = annonceService.getAnnonceByClient(id);
 

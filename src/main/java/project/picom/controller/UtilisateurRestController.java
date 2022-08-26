@@ -2,6 +2,8 @@ package project.picom.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -46,9 +48,9 @@ public class UtilisateurRestController {
         return ResponseEntity.ok(u);
 	}
 
-	@PostMapping("utilisateur")
+	@PostMapping("utilisateurs")
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public Client utilisateurPost(@RequestBody ClientDto client) {
+	public Client utilisateurPost(@RequestBody @Valid ClientDto client) {
 		Client c = new Client(client.getNom(), client.getPrenom(), client.getEmail(), client.getMotDePasse(), client.getNumeroDeTelephone());	
 		utilisateurService.addClient(c);
 		System.out.println(c);
