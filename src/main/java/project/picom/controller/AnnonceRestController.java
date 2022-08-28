@@ -47,9 +47,4 @@ public class AnnonceRestController {
 
         return ResponseEntity.ok(annonce);
     }
-
-//    TODO Ajouter le postMapping annonce
-//    @PostMapping("/annonce")
-//    @RolesAllowed("")
-//    public class 
 }
