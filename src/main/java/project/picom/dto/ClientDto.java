@@ -21,19 +21,19 @@ import project.picom.validators.ContactNumberConstraint;
 @Setter
 public class ClientDto {
     
-    @NotBlank
+    @NotBlank(message = "Veuillez remplir le champs Nom")
     String nom;
 
-    @NotBlank
+    @NotBlank(message = "Veuillez remplir le champs Prénom")
 	String prenom;
 
-	@Email
+	@Email(message = "Veuillez entrer un email valide")
 	String email;
 
-	@Length(min = 8)
+	@Length(min = 8, message = "Veuillez entrer un mot de passe à 8 caractères minimum")
 	String motDePasse;
 
-    @ContactNumberConstraint
+    @ContactNumberConstraint (message = "Veuillez entrer un contact")
 	String numeroDeTelephone;
 
 

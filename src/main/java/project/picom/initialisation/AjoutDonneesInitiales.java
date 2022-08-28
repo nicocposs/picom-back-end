@@ -64,7 +64,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
     }
 
     public void ajoutClient(){
-        Client c = new Client("Client","TropBien","client1@orsys.fr","12345678","0600000000");
+        Client c = new Client("Client","TropBien","client1@orsys.fr","12345678","0660091761");
         utilisateurService.addClient(c);
     }
 

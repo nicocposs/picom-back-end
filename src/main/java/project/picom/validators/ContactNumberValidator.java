@@ -10,8 +10,8 @@ ConstraintValidator<ContactNumberConstraint, String>{
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        Pattern myReg = Pattern.compile("(0|\\+33)[1-9][0-9]{8", Pattern.LITERAL);
-        return value != null && myReg.matcher(value).matches();
+        Pattern myReg = Pattern.compile("^0[1-9]\\d{8}$");
+        return !value.isEmpty() && myReg.matcher(value).matches();
     }
 
 }
