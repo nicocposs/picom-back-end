@@ -1,5 +1,7 @@
 package project.picom.initialisation;
 
+import java.time.LocalDateTime;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +27,6 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
     private final TrancheHoraireService trancheHoraireService;
     private final UtilisateurService utilisateurService;
     private final AnnonceService annonceService;
-
 
     @Override
     public void run(String... args) throws Exception {
@@ -74,10 +75,10 @@ public class AjoutDonneesInitiales implements CommandLineRunner{
     }
 
     public void ajoutAnnonces(){
-        Annonce a1 = new Annonce("Annonce 1",(byte)1);
+        Annonce a1 = new Annonce("Annonce 1",(byte)1,LocalDateTime.of(2022, 8, 24, 17, 0, 0),LocalDateTime.of(2022, 8, 25, 17,0,0));
         Client c = utilisateurService.getClient(1);
         a1.setClient(c);
-        Annonce a2 = new Annonce("Annonce 2",(byte)1);
+        Annonce a2 = new Annonce("Annonce 2",(byte)1,LocalDateTime.of(2022, 9, 12, 17, 0, 0),LocalDateTime.of(2022, 9, 15, 17, 0, 0));
         a2.setClient(c);
         annonceService.addAnnonce(a1);
         annonceService.addAnnonce(a2);

@@ -9,5 +9,7 @@ public interface AnnonceService {
     List<Annonce> getAnnonceByClient(Long id);
 
     void addAnnonce(Annonce a);
+
+    Annonce getAnnonceById(Long id);
     
 }
