@@ -35,6 +35,7 @@ public class Annonce {
 	private LocalDateTime dateHeureCreation;
 	private LocalDateTime dateHeureDebut;
 	private LocalDateTime dateHeureFin;
+	private String titre;
 	private String contenu;
 	@CreditCardNumber 
 	@Column(length=16)
@@ -57,8 +58,15 @@ public class Annonce {
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "annonces")
 	private List<TrancheHoraire> trancheHoraires;
 
+	public Annonce(String titre, byte moisExpiration, LocalDateTime dateHeureDebut,LocalDateTime dateHeureFin){
+		this.titre = titre;
+		this.moisExpiration = moisExpiration;
+		this.dateHeureDebut = dateHeureDebut;
+		this.dateHeureFin = dateHeureFin;
+	}
 	public Annonce(String contenu, byte moisExpiration){
 		this.contenu = contenu;
 		this.moisExpiration = moisExpiration;
+
 	}
 }

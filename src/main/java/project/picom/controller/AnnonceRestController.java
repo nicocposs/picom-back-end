@@ -37,6 +37,17 @@ public class AnnonceRestController {
         return ResponseEntity.ok(annonces);
     }
 
+    @GetMapping("/annonces/annonce/{id}")
+    public ResponseEntity<Annonce> getAnnonceById(@PathVariable Long id){
+        Annonce annonce = annonceService.getAnnonceById(id);
+
+        if(annonce == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        return ResponseEntity.ok(annonce);
+    }
+
 //    TODO Ajouter le postMapping annonce
 //    @PostMapping("/annonce")
 //    @RolesAllowed("")

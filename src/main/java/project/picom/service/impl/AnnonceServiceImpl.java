@@ -1,6 +1,7 @@
 package project.picom.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,15 @@ public class AnnonceServiceImpl implements AnnonceService{
     @Override
     public void addAnnonce(Annonce a) {
         annonceDao.save(a);
+    }
+
+    @Override
+    public Annonce getAnnonceById(Long id) {
+        Optional<Annonce> optA = annonceDao.findById(id);
+        if(optA.isPresent()){
+            return optA.get();
+        }else{
+            return null;
+        }
     }
 }
