@@ -15,6 +15,6 @@ public class Administrateur extends Utilisateur {
 		this.prenom	= prenom;
 		this.email = email;
 		this.motDePasse	= motDePasse;
+		this.role = "admin";
 	}
-
 }

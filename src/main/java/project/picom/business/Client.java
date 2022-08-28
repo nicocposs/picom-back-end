@@ -35,5 +35,6 @@ public class Client extends Utilisateur {
 		this.email = email;
 		this.motDePasse	= motDePasse;
 		this.numeroDeTelephone = numeroDeTelephone;
+		this.role = "client";
 	}
 }

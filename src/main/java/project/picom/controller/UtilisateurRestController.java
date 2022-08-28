@@ -3,12 +3,9 @@ package project.picom.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +24,7 @@ import lombok.AllArgsConstructor;
 import project.picom.business.Client;
 import project.picom.business.Utilisateur;
 import project.picom.dto.ClientDto;
+import project.picom.dto.UserDto;
 import project.picom.service.UtilisateurService;
 
 @RestController
@@ -59,7 +57,6 @@ public class UtilisateurRestController {
 	public ResponseEntity<Client> utilisateurPost(@RequestBody ClientDto client) {
 		Client c = new Client(client.getNom(), client.getPrenom(), client.getEmail(), client.getMotDePasse(), client.getNumeroDeTelephone());	
 		utilisateurService.addClient(c);
-		System.out.println(client);
 		return new ResponseEntity<>(c, HttpStatus.CREATED);
 	}
 
@@ -75,7 +72,17 @@ public class UtilisateurRestController {
 		return exceptionMap;
     }
 
+	@PostMapping("utilisateurs/connexion/{email}/{motDePasse}")
+	@ResponseStatus(value = HttpStatus.OK)
+	public ResponseEntity<UserDto> utilisateurConnexion(@PathVariable String email,@PathVariable String motDePasse) {
+		Utilisateur u = utilisateurService.getUtilisateur(email, motDePasse);
+		if (u == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		UserDto uDto = new UserDto(u.getId(), u.getEmail(), u.getRole());
+		return ResponseEntity.ok(uDto);
 
+	}
     
 
 }

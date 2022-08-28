@@ -36,4 +36,5 @@ public abstract class Utilisateur {
 	protected String email;
 	@Length(min = 8, message = "Veuillez entrer un mot de passe de 8 caractère minimum")
 	protected String motDePasse;
+	protected String role;
 }
