@@ -29,7 +29,7 @@ public class AnnonceRestControllerTest {
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
 				.get("/api/annonces/1");
 
-		mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.jsonPath("$[0].contenu").value("Annonce 1"))
+		mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.jsonPath("$[0].titre").value("Annonce 1"))
 				.andExpect(MockMvcResultMatchers.jsonPath("$[0].moisExpiration").value(1)).andExpect(status().isOk())
 				.andDo(MockMvcResultHandlers.print());
 	}
@@ -42,6 +42,30 @@ public class AnnonceRestControllerTest {
 
 		mockMvc.perform(requestBuilder)
 				.andExpect(status().isNoContent())
+				.andDo(MockMvcResultHandlers.print());
+	}
+
+	@Test
+	@Order(3)
+	void testGetAnnoncesByAnnonceId() throws Exception {
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
+				.get("/api/annonces/annonce/1");
+
+		mockMvc.perform(requestBuilder)
+				.andExpect(status().isOk())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.titre").value("Annonce 1"))
+				.andExpect(MockMvcResultMatchers.jsonPath("$.moisExpiration").value(1))
+				.andDo(MockMvcResultHandlers.print());
+	}
+
+	@Test
+	@Order(4)
+	void testGetAnnoncesByAnnonceIdFalse() throws Exception {
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
+				.get("/api/annonces/annonce/0");
+
+		mockMvc.perform(requestBuilder)
+				.andExpect(status().isBadRequest())
 				.andDo(MockMvcResultHandlers.print());
 	}
     

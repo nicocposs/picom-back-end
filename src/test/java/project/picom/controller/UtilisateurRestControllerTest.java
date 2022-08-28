@@ -41,7 +41,6 @@ public class UtilisateurRestControllerTest {
 
     @Test
 	@Order(1)
-	@GetMapping("utilisateurs/{email}/{motDePasse}")
 	void testUtilisateurGetByMailMdp() throws Exception {
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
 				.get("/api/utilisateurs/" + email + "/" + motDePasse);
@@ -54,7 +53,6 @@ public class UtilisateurRestControllerTest {
 
 	@Test
 	@Order(2)
-	@GetMapping("utilisateurs/{email}/{motDePasse}")
 	void testUtilisateurGetByMailMdpFalse() throws Exception {
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
 				.get("/api/utilisateurs/false/samarshpa" );
@@ -65,7 +63,6 @@ public class UtilisateurRestControllerTest {
 
 	@Test
 	@Order(3)
-	@GetMapping("utilisateurs")
 	void testGetall() throws Exception {
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
 				.get("/api/utilisateurs/");
@@ -77,7 +74,6 @@ public class UtilisateurRestControllerTest {
 
 	@Test
 	@Order(4)
-	@PostMapping("utilisateurs/")
 	void testPostUtilisateur() throws Exception {
 		c.setPrenom("Bob");
 		c.setNom("Bob");
@@ -102,7 +98,6 @@ public class UtilisateurRestControllerTest {
 
 	@Test
 	@Order(5)
-	@PostMapping("utilisateurs/")
 	void testPostUtilisateurFalse() throws Exception {
 		c.setPrenom("Bob");
 		c.setNom("Bob");
@@ -113,6 +108,33 @@ public class UtilisateurRestControllerTest {
 		clientJSON = objectMapper.writeValueAsString(c);
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/api/utilisateurs").content(clientJSON)
+		.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+		// on vérifie que le code retour est bien 400
+		.andExpect(status().isUnprocessableEntity())
+		// on affiche dans la console l'intégralité de la requête et de la réponse
+		.andDo(MockMvcResultHandlers.print());
+	}
+
+	@Test
+	@Order(6)
+	void testPostUtilisateurConnexion() throws Exception {
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/utilisateurs/connexion/"+email+"/"+motDePasse)
+		.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.email").value(email))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
+	    .andExpect(MockMvcResultMatchers.jsonPath("$.role").value("client"))
+		// on vérifie que le code retour est bien 400
+		.andExpect(status().isOk())
+		// on affiche dans la console l'intégralité de la requête et de la réponse
+		.andDo(MockMvcResultHandlers.print());
+	}
+
+	@Test
+	@Order(6)
+	void testPostUtilisateurConnexionFalse() throws Exception {
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/utilisateurs/connexion/aaa/aaaa")
 		.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 		// on vérifie que le code retour est bien 400
 		.andExpect(status().isBadRequest())
