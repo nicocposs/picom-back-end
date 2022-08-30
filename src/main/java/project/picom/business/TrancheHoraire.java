@@ -11,9 +11,12 @@ import javax.persistence.ManyToMany;
 
 import org.hibernate.validator.constraints.Range;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @AllArgsConstructor
@@ -27,7 +30,9 @@ public class TrancheHoraire {
 	private Long id;
 	@Range(min = 0, max = 23)
 	private int debut;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "trancheHoraires")
+	@JsonIgnore
+	@ToString.Exclude
 	private List<Annonce> annonces;
 
 	public TrancheHoraire(int debut) {

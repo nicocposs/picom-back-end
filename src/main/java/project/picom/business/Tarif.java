@@ -7,13 +7,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Digits;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Tarif {
 	
@@ -23,10 +27,14 @@ public class Tarif {
 	@Digits(fraction = 2, integer = 7)
 	private double prixEnEuros;
 	@OneToOne
+	
 	private TrancheHoraire trancheHoraire;
 	@OneToOne
+	@JsonIgnore
 	private Administrateur administrateur;
 	@OneToOne
+	
 	private Zone zone;
+
 
 }

@@ -16,6 +16,6 @@ public interface UtilisateurService {
 
     Utilisateur getUtilisateur(String email, String motDePasse);
 
-    Client getClient(int i);
+    Client getClient(Long id);
     
 }

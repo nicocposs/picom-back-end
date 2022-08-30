@@ -27,6 +27,7 @@ public class Client extends Utilisateur {
 	@ContactNumberConstraint
 	private String numeroDeTelephone;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+	@ToString.Exclude
 	private List<Annonce> annonces;
 	
 	public Client(String nom, String prenom, String email, String motDePasse, String numeroDeTelephone){

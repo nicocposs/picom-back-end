@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
-import project.picom.service.ArretService;
 
 @RestController
 @AllArgsConstructor
@@ -14,5 +13,5 @@ import project.picom.service.ArretService;
 @Validated
 @CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 public class ArretRestController {
-    private final ArretService arretService;
+    
 }

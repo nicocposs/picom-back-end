@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
-import project.picom.service.DiffusionService;
+
 
 @RestController
 @AllArgsConstructor
@@ -14,5 +14,5 @@ import project.picom.service.DiffusionService;
 @Validated
 @CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 public class DiffusionRestController {
-    private final DiffusionService diffusionService;
+    
 }

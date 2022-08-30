@@ -13,8 +13,6 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -131,7 +129,7 @@ public class UtilisateurRestControllerTest {
 	}
 
 	@Test
-	@Order(6)
+	@Order(7)
 	void testPostUtilisateurConnexionFalse() throws Exception {
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/api/utilisateurs/connexion/aaa/aaaa")

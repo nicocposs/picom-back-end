@@ -1,5 +1,6 @@
 package project.picom.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -31,5 +32,19 @@ public class ZoneServiceImpl implements ZoneService{
             return null;
         }
         
+    }
+
+    @Override
+    public List<Zone> recupererZones() {
+        return zoneDao.findAll();
+    }
+
+    @Override
+    public Zone recupererZone(Long l) {
+        Optional<Zone> z = zoneDao.findById(l);
+        if(z.isPresent()) {
+            return z.get();
+        }
+        return null;
     }
 }

@@ -44,8 +44,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
     }
 
     @Override
-    public Client getClient(int i) {
-        Long id = Long.valueOf(i);
+    public Client getClient(Long id) {
         Optional<Client> c = clientDao.findById(id);
         if(c.isPresent()){
             return c.get();
@@ -53,14 +52,4 @@ public class UtilisateurServiceImpl implements UtilisateurService{
             return null;
         }
     }
-
-//    @Override
-//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        // TODO Auto-generated method stub
-//        return null;
-//    }
-    
-    
-
-    
 }
